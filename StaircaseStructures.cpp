@@ -25,3 +25,41 @@
 // Write a program that takes a positive integer n and returns the number of different number of
 // structures that can be built from exactly n blocks, where 3 ≤ n ≤ 200.
 
+// n^3 solution below
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int countStaircaseStructures(int n, int prevHeight, vector<vector<int>>& memo) {
+    if (n == 0) {
+        return 1;
+    }
+
+    if (memo[n][prevHeight] != -1) {
+        return memo[n][prevHeight];
+    }
+
+    int totalWays = 0;
+
+    for (int height = 1; height <= n && height < prevHeight; height++) {
+        totalWays += countStaircaseStructures(n - height, height, memo);
+    }
+
+    memo[n][prevHeight] = totalWays;
+
+    return totalWays;
+}
+
+int countStaircaseStructures(int n) {
+    vector<vector<int>> memo(n + 1, vector<int>(n + 2, -1));
+    return countStaircaseStructures(n, n + 1, memo) - 1;
+}
+
+int main() {
+    // Example usage:
+    cout << countStaircaseStructures(200) << endl;
+    return 0;
+}
+
