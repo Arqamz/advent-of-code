@@ -25,7 +25,7 @@
 // Write a program that takes a positive integer n and returns the number of different number of
 // structures that can be built from exactly n blocks, where 3 ≤ n ≤ 200.
 
-// n^3 solution below
+// recursive n^3 solution below
 
 #include <iostream>
 #include <vector>
@@ -63,3 +63,35 @@ int main() {
     return 0;
 }
 
+// Iterative n^3 solution
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int countStaircaseStructures(int n) {
+    vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+
+    dp[0][0] = dp[1][1] = 1;
+
+    for (int blocks = 2; blocks <= n; blocks++) {
+        for (int height = 1; height <= blocks; height++) {
+            for (int prevHeight = 0; prevHeight < height; prevHeight++) {
+                dp[blocks][height] += dp[blocks - height][prevHeight];
+            }
+        }
+    }
+
+    int totalWays = 0;
+    for (int height = 1; height <= n; height++) {
+        totalWays += dp[n][height];
+    }
+
+    return totalWays-1;
+}
+
+int main() {
+    cout << countStaircaseStructures(10) << endl;
+    return 0;
+}
