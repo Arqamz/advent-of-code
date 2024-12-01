@@ -1,32 +1,36 @@
-# Prerequisites
-*.d
+# Elixir
+**/_build/
+**/deps/
+**/cover/
+**/.elixir_ls/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Haskell
+**/.cabal-sandbox/
+**/.cabal/
+**/.hie/
+**/.hie.yaml
+**/stack-work/
+**/dist-newstyle/
+**/cabal.project.local
+**/cabal.project.local~
+**/cabal.project.local.bak
+**/cabal.project.local.bak~
 
-# Precompiled Headers
-*.gch
-*.pch
+# C (and C++)
+**/*.o
+**/*.out
+**/*.exe
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.pyz
+**/*.pyw
+**/*.egg-info/
+**/dist/
+**/build/
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Executables without extensions
+**/*[^/]*$
