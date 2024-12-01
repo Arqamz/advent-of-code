@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unordered_map>
 
 #define MAX_SIZE 1001
 
 int compare(const void* a, const void* b) {
     return (*(int*)a - *(int*)b);
 }
+
+
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         printf("Usage: %s <input_file>\n", argv[0]);
@@ -41,6 +45,20 @@ int main(int argc, char *argv[]) {
     }
 
     printf("The difference is: %d\n", difference);
+
+    std::unordered_map<int, int> hashmap;
+
+    for (int i = 0; i < count; i++) {
+        hashmap[array2[i]]++;
+    }
+
+    int similiarity = 0;
+
+    for (int i = 0; i < count; i++) {
+        similiarity += array1[i] * hashmap[array1[i]];
+    }
+
+    printf("The similiarity is: %d\n", similiarity);
 
     return 0;
 }
