@@ -1,4 +1,4 @@
-#Day 2: Red-Nosed Reports
+# Day 2: Red-Nosed Reports
 
 Fortunately, the first location The Historians want to search isn't a long walk from the Chief Historian's office.
 
@@ -40,7 +40,8 @@ Analyze the unusual data from the engineers. How many reports are safe?
 
 Your puzzle answer was 432.
 
---- Part Two ---
+### Part Two
+
 The engineers are surprised by the low number of safe reports until they realize they forgot to tell you about the Problem Dampener.
 
 The Problem Dampener is a reactor-mounted module that lets the reactor safety systems tolerate a single bad level in what would otherwise be a safe report. It's like the bad level never happened!
@@ -61,4 +62,3 @@ More of the above example's reports are now safe:
 Thanks to the Problem Dampener, 4 reports are actually safe!
 
 Update your analysis by handling situations where the Problem Dampener can remove a single level from unsafe reports. How many reports are now safe?
-
