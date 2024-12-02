@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     Timer timer;
     timer.start_timer();
 
-    vector<int> data = read_input_file<int>(argv[1]);
+    vector<int> data = read_pairs_from_file<int>(argv[1]);
     
     vector<int> array1, array2;
     for (size_t i = 0; i < data.size(); i += 2) {

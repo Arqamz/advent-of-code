@@ -15,8 +15,13 @@ struct Timer {
     void print_duration(const std::string& part = "total");
 };
 
+std::string read_entire_file(const std::string& filename);
+
 template <typename T>
-std::vector<T> read_input_file(const std::string& filename);
+std::vector<T> read_pairs_from_file(const std::string& filename);
+
+template <typename T>
+std::vector<std::vector<T>> read_multiline_input_file(const std::string& filename);
 
 template <typename T>
 void print_vector(const std::vector<T>& vec);
