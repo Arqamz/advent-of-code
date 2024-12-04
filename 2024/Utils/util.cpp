@@ -70,6 +70,17 @@ vector<T> read_pairs_from_file(const string& filename) {
 }
 
 template <typename T>
+vector<T> readGrid(const string& filename) {
+    vector<T> grid;
+    ifstream file(filename);
+    string line;
+    while (getline(file, line)) {
+        grid.push_back(line);
+    }
+    return grid;
+}
+
+template <typename T>
 vector<vector<T>> read_multiline_input_file(const string& filename) {
     ifstream file(filename);
     vector<vector<T>> result;
@@ -106,3 +117,4 @@ void print_vector(const vector<T>& vec) {
 template vector<int> read_pairs_from_file<int>(const string&);
 template vector<vector<int>> read_multiline_input_file<int>(const string&);
 template void print_vector<int>(const vector<int>&);
+template vector<string> readGrid<string>(const string&);
