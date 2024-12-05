@@ -1,9 +1,21 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 #include "../Utils/util.h"
 
 using namespace std;
+
+vector<string> readGrid(const string& filename) {
+    vector<string> grid;
+    ifstream file(filename);
+    string line;
+    while (getline(file, line)) {
+        grid.push_back(line);
+    }
+    return grid;
+}
+
 
 bool matches(const vector<string>& grid, const string& word, int row, int col, int dRow, int dCol) {
     int numRows = grid.size();
@@ -87,7 +99,10 @@ int main(int argc, char* argv[]) {
     Timer overall_timer;
     overall_timer.start_timer();
 
-    vector<string> grid = readGrid<string>(argv[1]);
+    Timer part1_timer;
+    Timer part2_timer;
+    
+    vector<string> grid = readGrid(argv[1]);
     string word = "XMAS";
 
     if (grid.empty()) {
@@ -95,7 +110,6 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    Timer part1_timer;
     part1_timer.start_timer();
     int totalOccurrences = countWordOccurrences(grid, word);
     part1_timer.stop_timer();
@@ -103,7 +117,6 @@ int main(int argc, char* argv[]) {
     cout << "Total occurrences of '" << word << "': " << totalOccurrences << endl;
     part1_timer.print_duration("Part 1");
 
-    Timer part2_timer;
     part2_timer.start_timer();
     int totalXMAS = countXMAS(grid);
     part2_timer.stop_timer();

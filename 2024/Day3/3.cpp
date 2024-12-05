@@ -1,9 +1,24 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <fstream>
+#include <sstream>
 #include "../Utils/util.h"
 
 using namespace std;
+
+string read_entire_file(const string& filename) {
+    ifstream file(filename);
+    if (!file) {
+        cerr << "Failed to open file " << filename << endl;
+        return "";
+    }
+
+    stringstream buffer;
+    buffer << file.rdbuf();
+
+    return buffer.str();
+}
 
 int compute_mul(const string& instruction) {
     static const regex mul_regex(R"(mul\((\d+),(\d+)\))");
@@ -63,14 +78,15 @@ int main(int argc, char* argv[]) {
     Timer overall_timer;
     overall_timer.start_timer();
 
+    Timer part1_timer;
+    Timer part2_timer;
+
     string memory_input = read_entire_file(argv[1]);
 
-    Timer part1_timer;
     part1_timer.start_timer();
     int part1_result = extract_and_compute(memory_input);
     part1_timer.stop_timer();
 
-    Timer part2_timer;
     part2_timer.start_timer();
     int part2_result = extract_and_compute_enabled_only(memory_input);
     part2_timer.stop_timer();

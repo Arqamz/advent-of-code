@@ -3,11 +3,31 @@
 #include <unordered_map>
 #include <cmath>
 #include <algorithm>
+#include <fstream>
 #include "../Utils/util.h"
 
 #define MAX_SIZE 1001
 
 using namespace std;
+
+vector<int> read_pairs_from_file(const string& filename) {
+    ifstream file(filename);
+    vector<int> result;
+    int num1, num2;
+
+    if (!file) {
+        cerr << "Failed to open file " << filename << endl;
+        return result;
+    }
+
+    while (file >> num1 >> num2) {
+        result.push_back(num1);
+        result.push_back(num2);
+    }
+
+    file.close();
+    return result;
+}
 
 int calculate_difference(const vector<int>& array1, const vector<int>& array2) {
     int difference = 0;
@@ -41,10 +61,13 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    Timer timer;
-    timer.start_timer();
+    Timer overall_timer;
+    overall_timer.start_timer();
 
-    vector<int> data = read_pairs_from_file<int>(argv[1]);
+    Timer part1Timer;
+    Timer part2Timer;
+
+    vector<int> data = read_pairs_from_file(argv[1]);
     
     vector<int> array1, array2;
     for (size_t i = 0; i < data.size(); i += 2) {
@@ -54,25 +77,28 @@ int main(int argc, char *argv[]) {
 
     sort(array1.begin(), array1.end());
     sort(array2.begin(), array2.end());
-
-    // Part 1: Calculate difference
-    Timer part1Timer;
     part1Timer.start_timer();
+
     int difference = calculate_difference(array1, array2);
+
     part1Timer.stop_timer();
+
     cout << "Part 1 -> The difference is: " << difference << endl;
+
     part1Timer.print_duration("part 1");
 
-    // Part 2: Calculate similarity
-    Timer part2Timer;
     part2Timer.start_timer();
+
     int similarity = calculate_similarity(array1, array2);
+
     part2Timer.stop_timer();
+
     cout << "Part 2 -> The similarity is: " << similarity << endl;
+
     part2Timer.print_duration("part 2");
 
-    timer.stop_timer();
-    timer.print_duration();
+    overall_timer.stop_timer();
+    overall_timer.print_duration();
 
     return 0;
 }

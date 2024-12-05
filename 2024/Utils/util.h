@@ -15,11 +15,6 @@ struct Timer {
     void print_duration(const std::string& part = "total");
 };
 
-std::string read_entire_file(const std::string& filename);
-
-template <typename T>
-std::vector<T> readGrid(const std::string& filename);
-
 template <typename T>
 void print_vector(const std::vector<T>& vec);
 
