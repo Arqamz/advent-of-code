@@ -18,7 +18,7 @@ let
 in pkgs.mkShell rec {
   name = "advent-of-code-env";
 
-  buildInputs = [
+  packages = [
     haskellEnv
     elixirEnv
     pythonEnv
@@ -27,7 +27,6 @@ in pkgs.mkShell rec {
     clangEnv
   ];
 
-  # Optional, for use with specific tools or dependencies
   shellHook = ''
     echo "Welcome to the Advent of Code environment!"
     echo "Available languages: Elixir, Haskell, Python, C++, C"
